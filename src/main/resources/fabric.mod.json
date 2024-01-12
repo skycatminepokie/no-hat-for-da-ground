@@ -3,15 +3,14 @@
 	"id": "no-hat-for-da-ground",
 	"version": "${version}",
 	"name": "No Hat For Da Ground",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Prevents items with custom model data from being placed. Da ground no need yo hat.",
 	"authors": [
-		"Me!"
+		"skycatminepokie"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/skycatminepokie/no-hat-for-da-ground"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/no-hat-for-da-ground/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -37,8 +36,5 @@
 		"minecraft": "~1.20.4",
 		"java": ">=17",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
