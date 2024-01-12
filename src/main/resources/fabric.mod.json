@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "no-hat-for-da-ground",
+	"version": "${version}",
+	"name": "No Hat For Da Ground",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/no-hat-for-da-ground/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.skycat.nohatfordaground.NoHatForDaGround"
+		],
+		"client": [
+			"com.skycat.nohatfordaground.NoHatForDaGroundClient"
+		],
+		"fabric-datagen": [
+			"com.skycat.nohatfordaground.NoHatForDaGroundDataGenerator"
+		]
+	},
+	"mixins": [
+		"no-hat-for-da-ground.mixins.json",
+		{
+			"config": "no-hat-for-da-ground.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.3",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
