@@ -16,17 +16,10 @@
 	"entrypoints": {
 		"main": [
 			"com.skycat.nohatfordaground.NoHatForDaGround"
-		],
-		"client": [
-			"com.skycat.nohatfordaground.NoHatForDaGroundClient"
 		]
 	},
 	"mixins": [
-		"no-hat-for-da-ground.mixins.json",
-		{
-			"config": "no-hat-for-da-ground.client.mixins.json",
-			"environment": "client"
-		}
+		"no-hat-for-da-ground.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.3",
