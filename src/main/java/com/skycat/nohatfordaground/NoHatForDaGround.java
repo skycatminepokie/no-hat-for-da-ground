@@ -15,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NoHatForDaGround implements ModInitializer, UseBlockCallback {
-    public static final Logger LOGGER = LoggerFactory.getLogger("no-hat-for-da-ground");
-
 	@Override
 	public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
 		ItemStack stack = player.getStackInHand(hand);
