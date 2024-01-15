@@ -19,9 +19,6 @@
 		],
 		"client": [
 			"com.skycat.nohatfordaground.NoHatForDaGroundClient"
-		],
-		"fabric-datagen": [
-			"com.skycat.nohatfordaground.NoHatForDaGroundDataGenerator"
 		]
 	},
 	"mixins": [
