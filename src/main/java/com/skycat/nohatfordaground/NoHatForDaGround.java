@@ -18,7 +18,7 @@ public class NoHatForDaGround implements ModInitializer, UseBlockCallback {
 	@Override
 	public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
 		ItemStack stack = player.getStackInHand(hand);
-		NbtCompound nbt = stack.getNbt();
+		NbtCompound nbt = stack.getTag();
 		if (nbt != null && nbt.get("CustomModelData") != null) {
 			player.sendMessage(Text.of("You can't place that!"), true);
 			return ActionResult.FAIL;
