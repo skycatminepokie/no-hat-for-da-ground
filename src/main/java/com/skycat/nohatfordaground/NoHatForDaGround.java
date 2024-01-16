@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.packet.s2c.play.InventoryS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -21,6 +23,7 @@ public class NoHatForDaGround implements ModInitializer, UseBlockCallback {
 		NbtCompound nbt = stack.getNbt();
 		if (nbt != null && nbt.get("CustomModelData") != null) {
 			player.sendMessage(Text.of("You can't place that!"), true);
+			// Works, but having it server-side only causes client-side desync
 			return ActionResult.FAIL;
 		}
 		return ActionResult.PASS;
