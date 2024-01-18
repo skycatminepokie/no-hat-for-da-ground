@@ -19,6 +19,7 @@ public abstract class UseBlockCallbackMixinServer {
 
     @Shadow @Final private static Logger LOGGER;
 
+    @SuppressWarnings("MixinAnnotationTarget")
     @TargetHandler(
         mixin = "net.fabricmc.fabric.mixin.event.interaction.ServerPlayerInteractionManagerMixin",
             name = "interactBlock"
