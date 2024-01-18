@@ -3,6 +3,7 @@
 	"package": "com.skycat.nohatfordaground.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"UseBlockCallbackMixinServer"
 	],
 	"injectors": {
 		"defaultRequire": 1
