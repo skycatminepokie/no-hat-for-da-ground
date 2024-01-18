@@ -6,8 +6,6 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.InventoryS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -17,13 +15,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NoHatForDaGround implements ModInitializer, UseBlockCallback {
+	public static boolean sendUpdateAfterBlockBreak = false; // Used to send an inventory update packet when the server rejects the placement of a block
 	@Override
 	public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
 		ItemStack stack = player.getStackInHand(hand);
 		NbtCompound nbt = stack.getNbt();
 		if (nbt != null && nbt.get("CustomModelData") != null) {
 			player.sendMessage(Text.of("You can't place that!"), true);
-			// Works, but having it server-side only causes client-side desync
+			sendUpdateAfterBlockBreak = true;
 			return ActionResult.FAIL;
 		}
 		return ActionResult.PASS;
