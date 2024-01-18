@@ -1,7 +1,6 @@
 package com.skycat.nohatfordaground;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -11,8 +10,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.World;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class NoHatForDaGround implements ModInitializer, UseBlockCallback {
 	public static boolean sendUpdateAfterBlockBreak = false; // Used to send an inventory update packet when the server rejects the placement of a block
