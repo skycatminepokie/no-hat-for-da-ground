@@ -13,18 +13,13 @@
 	"license": "MIT",
 	"icon": "assets/no-hat-for-da-ground/icon.png",
 	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.skycat.nohatfordaground.NoHatForDaGround"
-		]
-	},
+	"entrypoints": {},
 	"mixins": [
 		"no-hat-for-da-ground.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.3",
+		"fabricloader": ">=0.15.0",
 		"minecraft": "^1.20",
-		"java": ">=17",
-		"fabric-api": "*"
+		"java": ">=17"
 	}
 }
