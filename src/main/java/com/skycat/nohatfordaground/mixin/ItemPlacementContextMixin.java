@@ -5,9 +5,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import org.jetbrains.annotations.Contract;
@@ -33,15 +33,15 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         // This is a lot less clean-looking, but it reduces it to one mixin and makes more sense in my head.
         if (!original) return false; // If it wasn't going to place in the first place, don't bother.
         ItemStack stack = this.getStack();
-        if (stack.getNbt() == null || !stack.getNbt().contains("CustomModelData", NbtElement.NUMBER_TYPE)) { // if it has no NBT or if it has no custom model data
+        if (stack.getTag() == null || !stack.getTag().contains("CustomModelData", 99)) { // if it has no NBT or if it has no custom model data. Magic number 99 is the NBT NUMBER_TYPE tag.
             return true; // Then we don't need to bother.
         }
         // We've decided to block it
         PlayerEntity player = this.getPlayer();
         if (player != null) { // If it was a player
-            this.getPlayer().sendMessage(Text.of("You can't place that!"), true); // Let the player know we're blocking it
-            if (player instanceof ServerPlayerEntity serverPlayer) { // If we're on the server side
-                serverPlayer.playerScreenHandler.syncState(); // Make sure the client gets the update
+            this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
+            if (player instanceof ServerPlayerEntity) { // If we're on the server side
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket()); // Make sure the client gets the update
             }
         }
         return false; // We decided we were going to block it earlier
