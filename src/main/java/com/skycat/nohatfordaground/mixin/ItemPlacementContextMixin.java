@@ -21,6 +21,7 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
      * @deprecated Don't use this.
      */
     @Contract("_,_,_->fail")
+    @Deprecated
     private ItemPlacementContextMixin(PlayerEntity player, Hand hand, BlockHitResult hit) {
         super(player, hand, hit);
         throw new UnsupportedOperationException("Seriously, don't use this. Like bro, did you ignore the javadoc, the deprecated warning, and static analysis? You're asking for it man.");
