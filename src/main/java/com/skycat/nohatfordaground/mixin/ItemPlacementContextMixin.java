@@ -33,7 +33,7 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         // This is a lot less clean-looking, but it reduces it to one mixin and makes more sense in my head.
         if (!original) return false; // If it wasn't going to place in the first place, don't bother.
         ItemStack stack = this.getStack();
-        if (stack.getNbt() == null || !stack.getNbt().contains("CustomModelData", NbtElement.NUMBER_TYPE)) { // if it has no NBT or if it has no custom model data
+        if (stack.getTag() == null || !stack.getTag().contains("CustomModelData", NbtElement.NUMBER_TYPE)) { // if it has no NBT or if it has no custom model data
             return true; // Then we don't need to bother.
         }
         // We've decided to block it
