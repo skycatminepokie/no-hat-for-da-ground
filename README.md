@@ -4,7 +4,7 @@ This pevents you from placing items with the `CustomModelData` NBT tag. All thos
 ## For Server Owners
 When installed on **only** the server side, the items appear to be placed for a brief moment on the client side. Players will not get "lag back."
 
-Requires Fabric API
+Requires Fabric API for versions <= 0.0.2.
 
 ## For Modpacks
 You can add this to your modpack as long as it's still hosted on Modrinth.
