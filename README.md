@@ -9,6 +9,10 @@ Requires Fabric API for versions <= 0.0.2.
 ## For Modpacks
 You can add this to your modpack as long as it's still hosted on Modrinth.
 
+## Known issues
+Pre-1.17 versions will probably break with mods that mess with inventory size. A fix is not currently planned.
+- If you know how to fix this, please make a [pull request](https://github.com/skycatminepokie/no-hat-for-da-ground/pulls)
+
 ## Questions and Contact
 Ports: Make an issue on [GitHub](https://github.com/skycatminepokie/no-hat-for-da-ground/issues) to request a version port. I won't port loaders.
 

@@ -39,15 +39,15 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         // We've decided to block it
         PlayerEntity player = this.getPlayer();
         if (player != null) { // If it was a player
-            this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
             if (player instanceof ServerPlayerEntity) { // If we're on the server side
+                this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
                 int slot;
                 if (hand.equals(Hand.MAIN_HAND)) {
                     slot = player.inventory.selectedSlot;
                 } else {
-                    slot = -106; // Desync happens on the client with the offhand
+                    slot = 40; // Offhand (found by trial and error lol)
                 }
-                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(-2, slot, player.inventory.getStack(slot))); // Send inventory update to the client
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(-2, slot, stack)); // Send inventory update to the client. Magic number -2: The id that's used for /give and pick block. I don't know what it does.
             }
         }
         return false; // We decided we were going to block it earlier
