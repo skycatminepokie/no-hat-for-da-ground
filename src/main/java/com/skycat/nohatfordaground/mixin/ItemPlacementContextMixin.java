@@ -1,11 +1,11 @@
 package com.skycat.nohatfordaground.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.minecraft.client.network.packet.GuiSlotUpdateS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Hand;
@@ -40,14 +40,14 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         PlayerEntity player = this.getPlayer();
         if (player != null) { // If it was a player
             if (player instanceof ServerPlayerEntity) { // If we're on the server side
-                this.getPlayer().addChatMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
+                this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
                 int slot;
                 if (getHand().equals(Hand.MAIN_HAND)) {
                     slot = player.inventory.selectedSlot;
                 } else {
                     slot = 40; // Offhand (found by trial and error lol)
                 }
-                ((ServerPlayerEntity) player).networkHandler.sendPacket(new GuiSlotUpdateS2CPacket(-2, slot, stack)); // Send inventory update to the client. Magic number -2: The id that's used for /give and pick block. I don't know what it does.
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(-2, slot, stack)); // Send inventory update to the client. Magic number -2: The id that's used for /give and pick block. I don't know what it does.
             }
         }
         return false; // We decided we were going to block it earlier
