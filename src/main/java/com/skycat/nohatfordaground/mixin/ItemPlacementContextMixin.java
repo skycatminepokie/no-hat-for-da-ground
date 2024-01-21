@@ -42,7 +42,7 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
             if (player instanceof ServerPlayerEntity) { // If we're on the server side
                 this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
                 int slot;
-                if (hand.equals(Hand.MAIN_HAND)) {
+                if (getHand().equals(Hand.MAIN_HAND)) {
                     slot = player.inventory.selectedSlot;
                 } else {
                     slot = 40; // Offhand (found by trial and error lol)
