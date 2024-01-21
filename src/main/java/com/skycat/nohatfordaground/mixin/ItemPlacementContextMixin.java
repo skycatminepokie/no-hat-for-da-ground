@@ -41,7 +41,13 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         if (player != null) { // If it was a player
             this.getPlayer().sendMessage(new LiteralText("You can't place that!"), true); // Let the player know we're blocking it
             if (player instanceof ServerPlayerEntity) { // If we're on the server side
-                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket()); // Make sure the client gets the update
+                int slot;
+                if (hand.equals(Hand.MAIN_HAND)) {
+                    slot = player.inventory.selectedSlot;
+                } else {
+                    slot = -106; // Desync happens on the client with the offhand
+                }
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(-2, slot, player.inventory.getStack(slot))); // Send inventory update to the client
             }
         }
         return false; // We decided we were going to block it earlier
