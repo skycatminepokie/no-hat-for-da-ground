@@ -1,11 +1,11 @@
 package com.skycat.nohatfordaground.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -33,7 +33,7 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         // This is a lot less clean-looking, but it reduces it to one mixin and makes more sense in my head.
         if (!original) return false; // If it wasn't going to place in the first place, don't bother.
         ItemStack stack = this.getStack();
-        if (stack.getNbt() == null || !stack.getNbt().contains("CustomModelData", NbtElement.NUMBER_TYPE)) { // if it has no NBT or if it has no custom model data
+        if (!stack.getComponents().contains(DataComponentTypes.CUSTOM_MODEL_DATA)) { // if it has no custom model data
             return true; // Then we don't need to bother.
         }
         // We've decided to block it
