@@ -7,7 +7,7 @@ When installed on **only** the server side, the items appear to be placed for a 
 Requires Fabric API for versions <= 0.0.2.
 
 ## For Modpacks
-You can add this to your modpack as long as it's still hosted on Modrinth.
+You can add this to your modpack as long as the mod is still hosted on Modrinth.
 
 ## Questions and Contact
 Ports: Make an issue on [GitHub](https://github.com/skycatminepokie/no-hat-for-da-ground/issues) to request a version port. I won't port loaders.
