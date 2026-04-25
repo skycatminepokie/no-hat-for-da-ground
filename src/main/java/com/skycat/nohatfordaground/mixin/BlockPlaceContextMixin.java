@@ -1,28 +1,28 @@
 package com.skycat.nohatfordaground.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Contract;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(ItemPlacementContext.class)
-public abstract class ItemPlacementContextMixin extends ItemUsageContext {
+@Mixin(BlockPlaceContext.class)
+public abstract class BlockPlaceContextMixin extends UseOnContext {
     /**
      * Required by ItemUsageContext, but unused. Don't use it - mixins aren't meant to be constructed.
      * @deprecated Don't use this.
      */
     @Contract("_,_,_->fail")
     @Deprecated
-    private ItemPlacementContextMixin(PlayerEntity player, Hand hand, BlockHitResult hit) {
+    private BlockPlaceContextMixin(Player player, InteractionHand hand, BlockHitResult hit) {
         super(player, hand, hit);
         throw new UnsupportedOperationException("Seriously, don't use this. Like bro, did you ignore the javadoc, the deprecated warning, and static analysis? You're asking for it man.");
     }
@@ -32,16 +32,16 @@ public abstract class ItemPlacementContextMixin extends ItemUsageContext {
         // Adapted from Linguardium's method: https://github.com/Linguardium/no-hat-for-da-ground/commit/33ae0e396bf29bd07edae919b6765e0569bd3a7a
         // This is a lot less clean-looking, but it reduces it to one mixin and makes more sense in my head.
         if (!original) return false; // If it wasn't going to place in the first place, don't bother.
-        ItemStack stack = this.getStack();
-        if (!stack.getComponents().contains(DataComponentTypes.CUSTOM_MODEL_DATA)) { // if it has no custom model data
+        ItemStack stack = this.getItemInHand();
+        if (!stack.getComponents().has(DataComponents.CUSTOM_MODEL_DATA)) { // if it has no custom model data
             return true; // Then we don't need to bother.
         }
         // We've decided to block it
-        PlayerEntity player = this.getPlayer();
+        Player player = this.getPlayer();
         if (player != null) { // If it was a player
-            this.getPlayer().sendMessage(Text.of("You can't place that!"), true); // Let the player know we're blocking it
-            if (player instanceof ServerPlayerEntity serverPlayer) { // If we're on the server side
-                serverPlayer.playerScreenHandler.syncState(); // Make sure the client gets the update
+            player.sendOverlayMessage(Component.nullToEmpty("You can't place that!")); // Let the player know we're blocking it
+            if (player instanceof ServerPlayer serverPlayer) { // If we're on the server side
+                serverPlayer.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
             }
         }
         return false; // We decided we were going to block it earlier
