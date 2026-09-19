@@ -1,26 +1,27 @@
 {
-	"schemaVersion": 1,
-	"id": "no-hat-for-da-ground",
-	"version": "${version}",
-	"name": "No Hat For Da Ground",
-	"description": "Prevents items with custom model data from being placed. Da ground no need yo hat.",
-	"authors": [
-		"skycatminepokie"
-	],
-	"contact": {
-		"sources": "https://github.com/skycatminepokie/no-hat-for-da-ground",
-		"issues": "https://github.com/skycatminepokie/no-hat-for-da-ground/issues"
-	},
-	"license": "MIT",
-	"icon": "assets/no-hat-for-da-ground/icon.png",
-	"environment": "*",
-	"entrypoints": {},
-	"mixins": [
-		"no-hat-for-da-ground.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.19.2",
-		"minecraft": "~${minecraft}",
-		"java": ">=25"
-	}
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "Prevents items with custom model data from being placed.\nDa ground no need yo hat.",
+  "authors": [
+    "skycatminepokie"
+  ],
+  "contact": {
+    "sources": "https://github.com/skycatminepokie/no-hat-for-da-ground/",
+    "issues": "https://github.com/skycatminepokie/no-hat-for-da-ground/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/no-hat-for-da-ground/icon.png",
+  "environment": "*",
+  "entrypoints": {
+  },
+  "mixins": [
+    "no-hat-for-da-ground.mixins.json"
+  ],
+  "accessWidener": "no-hat-for-da-ground.ct",
+  "depends": {
+    "fabricloader": ">=${fabric_loader}",
+    "minecraft": "${minecraft}"
+  }
 }

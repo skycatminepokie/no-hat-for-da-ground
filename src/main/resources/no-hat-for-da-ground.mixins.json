@@ -1,11 +1,11 @@
 {
-	"required": true,
-	"package": "com.skycat.nohatfordaground.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"BlockPlaceContextMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "package": "com.skycatdev.nohatfordaground.mixin",
+  "compatibilityLevel": "${java}",
+  "mixins": [
+    "NoHatsOnGround"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
