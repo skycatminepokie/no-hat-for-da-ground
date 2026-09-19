@@ -38,3 +38,20 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+/config/
+/logs/
+
+# After running migrateMappings
+remappedSrc/
+
+# Datagen cache
+/src/main/generated/.cache/
+
+# patches
+*.patch
+
+.mixin.out/
+/prodServerRun/
+
+# No Hat For Da Ground
+versions
