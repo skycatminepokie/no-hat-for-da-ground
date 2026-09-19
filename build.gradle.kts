@@ -32,6 +32,7 @@ repositories {
     }
     strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
+    strictMaven("https://maven.nucleoid.xyz", "Nucleoid", "xyz.nucleoid")
 }
 
 dependencies {
@@ -52,6 +53,12 @@ dependencies {
     // Use `mod{dependency type}` even on 26.1+ - loom-back-compat converts them
     // Remember to update dependencies in fabric.mod.json and the publishing task
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
+    "xyz.nucleoid:server-translations-api:${property("deps.server_translations")}".let {
+        include(it)
+        modImplementation(it)
+    }
+    // Added so server-translations-api will work. Depended on in fmj so loader will load them.
+    fapi("fabric-resource-loader-v1", "fabric-lifecycle-events-v1", "fabric-networking-api-v1", "fabric-api-base")
 }
 
 loom {
@@ -91,19 +98,29 @@ tasks {
             inputs.property(key, value)
             set(key, value)
         }
+        inputs.dir("../../src/main/resources/assets/no-hat-for-da-ground/lang")
 
+        // fmj
         val props = buildMap {
             register("id", "mod.id")
             register("name", "mod.name")
             register("version", "mod.version")
             register("minecraft", "mod.mc_compat")
             register("fabric_loader", "deps.fabric_loader")
+            register("fabric_api", "deps.fabric_api")
         }
 
         filesMatching("fabric.mod.json") { expand(props) }
 
+        // mixins.json
         val mixinJava = "JAVA_${requiredJava.majorVersion}"
         filesMatching("*.mixins.json") { expand("java" to mixinJava) }
+
+
+        // lang files
+        from("../../src/main/resources/assets/no-hat-for-da-ground/lang") {
+            into("data/no-hat-for-da-ground/lang")
+        }
     }
 
     // Includes the license file in the built mod
@@ -145,6 +162,10 @@ tasks {
             additionalFile(loomx.modSourcesJar.map { it.archiveFile.get() }) {
                 type.set(SOURCES_JAR)
             }
+
+            requires {
+                slug = "fabric-api"
+            }
         }
 
         curseforge {
@@ -153,6 +174,10 @@ tasks {
             
             minecraftVersions.addAll(compatibleVersions)
             additionalFile(loomx.modSourcesJar.map { it.archiveFile.get() }) { }
+
+            requires {
+                slug = "fabric-api"
+            }
         }
     }
 

@@ -1,8 +1,11 @@
 package com.skycatdev.nohatfordaground.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -34,7 +37,9 @@ public abstract class NoHatsOnGround extends UseOnContext {
         // We've decided to block it
         Player player = this.getPlayer();
         if (player != null) { // If it was a player
-            player.sendOverlayMessage(Component.literal("You can't place that!")); // Let the player know we're blocking it
+            player.sendOverlayMessage(
+                    Component.translatable("no-hat-for-da-ground.preventedPlacement")
+            ); // Let the player know we're blocking it
             if (player instanceof ServerPlayer serverPlayer) { // If we're on the server side
                 serverPlayer.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
             }

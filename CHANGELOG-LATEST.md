@@ -1,0 +1,7 @@
+- Added the ability to translate the message sent when something is blocked from being placed
+- Added LOLCAT translation
+- Added Pirate Speak translation
+- Added Toki Pona translation
+- Added Shakespearean English translation
+- Added Upside-Down British English translation
+- Added Anglish translation
