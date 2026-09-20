@@ -43,3 +43,11 @@ mod.mc_title = "1.21.9 through 1.21.11"
 deps.fabric_api = "0.134.1+1.21.9"
 deps.server_translations = "2.5.2+1.21.9-pre3"
 deps.resource_loader = "0"
+
+["1.21.5"]
+mod.mc_compat = ">=1.21.5 <=1.21.8"
+mod.mc_releases = ["1.21.5", "1.21.6", "1.21.7", "1.21.8"]
+mod.mc_title = "1.21.5 through 1.21.8"
+deps.fabric_api = "0.128.2+1.21.5"
+deps.server_translations = "2.5.1+1.21.5"
+deps.resource_loader = "0"
