@@ -9,12 +9,26 @@ loomx.loom_version = "1.17-SNAPSHOT"
 publish.modrinth = "8vEPWwBX"
 publish.curseforge = "1701934"
 
+["26.3"]
+mod.mc_compat = "~26.3"
+mod.mc_releases = ["26.3"]
+mod.mc_title = "26.3"
+deps.fabric_api = "0.161.0+26.3"
+deps.server_translations = "3.2.0+26.3"
+
 ["26.2"]
-# Mod compatibility range in fabric.mod.json
 mod.mc_compat = "~26.2"
-# List of releases to be marked compatible on Modrinth/Curseforge
 mod.mc_releases = ["26.2"]
 mod.mc_title = "26.2"
 deps.fabric_api = "0.161.0+26.2"
-# https://github.com/NucleoidMC/Server-Translations/releases
 deps.server_translations = "3.1.0+26.2"
+
+["26.1"]
+# Mod compatibility range in fabric.mod.json
+mod.mc_compat = "~26.1"
+# List of releases to be marked compatible on Modrinth/Curseforge
+mod.mc_releases = ["26.1", "26.1.1", "26.1.2"]
+mod.mc_title = "26.1.x"
+deps.fabric_api = "0.145.1+26.1"
+# https://github.com/NucleoidMC/Server-Translations/releases
+deps.server_translations = "3.0.3+26.1"
