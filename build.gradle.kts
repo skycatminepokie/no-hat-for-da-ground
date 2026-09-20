@@ -58,7 +58,7 @@ dependencies {
         modImplementation(it)
     }
     // Added so server-translations-api will work. Depended on in fmj so loader will load them.
-    fapi("fabric-resource-loader-v1", "fabric-lifecycle-events-v1", "fabric-networking-api-v1", "fabric-api-base")
+    fapi("fabric-resource-loader-v${property("deps.resource_loader")}", "fabric-lifecycle-events-v1", "fabric-networking-api-v1", "fabric-api-base")
 }
 
 loom {
@@ -108,6 +108,7 @@ tasks {
             register("minecraft", "mod.mc_compat")
             register("fabric_loader", "deps.fabric_loader")
             register("fabric_api", "deps.fabric_api")
+            register("resource_loader", "deps.resource_loader")
         }
 
         filesMatching("fabric.mod.json") { expand(props) }
