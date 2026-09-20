@@ -36,10 +36,11 @@ public abstract class NoHatsOnGround extends UseOnContext {
 
         // We've decided to block it
         Player player = this.getPlayer();
-        if (player != null) { // If it was a player
-            player.sendOverlayMessage(
-                    Component.translatable("no-hat-for-da-ground.preventedPlacement")
-            ); // Let the player know we're blocking it
+        if (player != null) {
+            //? if >=26.1 {
+            player.sendOverlayMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"));
+            //?} else
+            //player.displayClientMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"), true);
             if (player instanceof ServerPlayer serverPlayer) { // If we're on the server side
                 serverPlayer.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
             }
