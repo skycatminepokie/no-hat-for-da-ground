@@ -54,8 +54,12 @@ dependencies {
     // Remember to update dependencies in fabric.mod.json and the publishing task
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     "xyz.nucleoid:server-translations-api:${property("deps.server_translations")}".let {
-        include(it)
-        modImplementation(it)
+        include(it) {
+            exclude("net.fabricmc.fabric-api", "fabric-api")
+        }
+        modImplementation(it) {
+            exclude("net.fabricmc.fabric-api", "fabric-api")
+        }
     }
     // Added so server-translations-api will work. Depended on in fmj so loader will load them.
     fapi("fabric-resource-loader-v${property("deps.resource_loader")}", "fabric-lifecycle-events-v1", "fabric-networking-api-v1", "fabric-api-base")
