@@ -1,11 +1,10 @@
 package com.skycatdev.nohatfordaground.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+//? if >=1.20.5
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +29,10 @@ public abstract class NoHatsOnGround extends UseOnContext {
         if (!original) return false; // If it wasn't going to place in the first place, don't bother.
 
         ItemStack stack = this.getItemInHand();
+        //? if >=1.20.5 {
         if (!stack.getComponents().has(DataComponents.CUSTOM_MODEL_DATA)) { // if it has no custom model data
+        //?} else
+        //if (stack.getTag() == null || !stack.getTag().contains("CustomModelData")) {
             return true /* == original */; // Then we don't need to bother.
         }
 
