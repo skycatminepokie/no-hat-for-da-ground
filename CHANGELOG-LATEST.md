@@ -5,3 +5,4 @@
 - Added Shakespearean English translation
 - Added Upside-Down British English translation
 - Added Anglish translation
+- Fixed bug in versions <1.20.5 where items with non-numeric custom model data could still be placed
