@@ -32,7 +32,7 @@ repositories {
     }
     strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
-    strictMaven("https://maven.nucleoid.xyz", "Nucleoid", "xyz.nucleoid")
+    strictMaven("https://maven.nucleoid.xyz", "Nucleoid", "xyz.nucleoid", "fr.catcore")
 }
 
 dependencies {
@@ -53,7 +53,8 @@ dependencies {
     // Use `mod{dependency type}` even on 26.1+ - loom-back-compat converts them
     // Remember to update dependencies in fabric.mod.json and the publishing task
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
-    "xyz.nucleoid:server-translations-api:${property("deps.server_translations")}".let {
+    val translationsApiNamespace = if (sc.current.parsed < "1.19.4") "fr.catcore" else "xyz.nucleoid"
+    "$translationsApiNamespace:server-translations-api:${property("deps.server_translations")}".let {
         include(it) {
             exclude("net.fabricmc.fabric-api", "fabric-api")
         }
