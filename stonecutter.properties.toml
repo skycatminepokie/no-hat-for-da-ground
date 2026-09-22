@@ -2,7 +2,7 @@
 mod.id = "no-hat-for-da-ground"
 mod.name = "No Hat For Da Ground"
 mod.group = "com.skycatdev"
-mod.version = "0.0.4"
+mod.version = "1.0.0"
 
 deps.fabric_loader = "0.19.3"
 loomx.loom_version = "1.17-SNAPSHOT"
