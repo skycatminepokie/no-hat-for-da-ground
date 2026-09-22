@@ -3,7 +3,6 @@ package com.skycatdev.nohatfordaground.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 //? if >=1.20.5
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 //? if <=1.18.2
 //import net.minecraft.network.chat.TranslatableComponent;
@@ -47,8 +46,8 @@ public abstract class NoHatsOnGround extends UseOnContext {
             /*player.displayClientMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"), true);
             *///?} else
             //player.displayClientMessage(new TranslatableComponent("no-hat-for-da-ground.preventedPlacement"), true);
-            if (player instanceof ServerPlayer serverPlayer) { // If we're on the server side
-                serverPlayer.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
+            if (player instanceof ServerPlayer) { // If we're on the server side
+                player.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
             }
         }
         return false; // We decided we were going to block it earlier
