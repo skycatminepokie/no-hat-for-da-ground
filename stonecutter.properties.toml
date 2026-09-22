@@ -99,3 +99,11 @@ mod.mc_title = "1.20 through 1.20.1"
 deps.fabric_api = "0.83.0+1.20"
 deps.server_translations = "2.0.0+1.20"
 deps.resource_loader = "0"
+
+["1.19.4"]
+mod.mc_compat = "1.19.4"
+mod.mc_releases = ["1.19.4"]
+mod.mc_title = "1.19.4"
+deps.fabric_api = "0.87.2+1.19.4"
+deps.server_translations = "2.0.0-beta.2+1.19.4-pre2"
+deps.resource_loader = "0"
