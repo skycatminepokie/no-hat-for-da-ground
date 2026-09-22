@@ -5,6 +5,8 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+//? if <=1.18.2
+//import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -41,8 +43,10 @@ public abstract class NoHatsOnGround extends UseOnContext {
         if (player != null) {
             //? if >=26.1 {
             player.sendOverlayMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"));
-            //?} else
-            //player.displayClientMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"), true);
+            //?} else if >1.18.2 {
+            /*player.displayClientMessage(Component.translatable("no-hat-for-da-ground.preventedPlacement"), true);
+            *///?} else
+            //player.displayClientMessage(new TranslatableComponent("no-hat-for-da-ground.preventedPlacement"), true);
             if (player instanceof ServerPlayer serverPlayer) { // If we're on the server side
                 serverPlayer.inventoryMenu.sendAllDataToRemote(); // Make sure the client gets the update
             }
