@@ -115,3 +115,11 @@ mod.mc_title = "1.19.3"
 deps.fabric_api = "0.76.1+1.19.3"
 deps.server_translations = "1.4.19+1.19.3"
 deps.resource_loader = "0"
+
+["1.19.2"]
+mod.mc_compat = "1.19.2"
+mod.mc_releases = ["1.19.2"]
+mod.mc_title = "1.19.2"
+deps.fabric_api = "0.77.0+1.19.2"
+deps.server_translations = "1.4.18+1.19.2"
+deps.resource_loader = "0"
