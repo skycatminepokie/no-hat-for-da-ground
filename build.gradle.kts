@@ -148,8 +148,8 @@ tasks {
 
     publishMods {
         file = loomx.modJar.map { it.archiveFile.get() }
-        dryRun = providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
-                || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
+        dryRun = property("publish.modrinth.token") == null
+                || property("publish.curseforge.token") == null
 
         // Metadata
         type.set(STABLE)
@@ -162,12 +162,15 @@ tasks {
 
         modrinth {
             projectId = property("publish.modrinth") as String
-            accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+            accessToken = property("publish.modrinth.token") as String
+
+            projectDescription.set(providers.fileContents(layout.projectDirectory.file("README.md")).asText)
 
             minecraftVersions.addAll(compatibleVersions)
             additionalFile(loomx.modSourcesJar.map { it.archiveFile.get() }) {
                 type.set(SOURCES_JAR)
             }
+            environment.set(CLIENT_OR_SERVER)
 
             requires {
                 slug = "fabric-api"
@@ -176,10 +179,14 @@ tasks {
 
         curseforge {
             projectId = property("publish.curseforge") as String
-            accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+            accessToken = property("publish.curseforge.token") as String
+            client.set(true)
+            server.set(true)
             
             minecraftVersions.addAll(compatibleVersions)
-            additionalFile(loomx.modSourcesJar.map { it.archiveFile.get() }) { }
+            additionalFile(loomx.modSourcesJar.map { it.archiveFile.get() }) {
+                this.name = "Sources Jar"
+            }
 
             requires {
                 slug = "fabric-api"
@@ -188,6 +195,11 @@ tasks {
     }
 
     test {
-        useJUnitPlatform()
+        // Workaround for https://github.com/FabricMC/fabric-loader/issues/817
+        if (sc.current.parsed > "1.18") {
+            useJUnitPlatform()
+        } else {
+            enabled = false
+        }
     }
 }
