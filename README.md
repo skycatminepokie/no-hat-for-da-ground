@@ -7,7 +7,10 @@ When installed on **only** the server side, the items appear to be placed for a 
 ## For Modpacks
 You can add this to your modpack as long as the mod is still hosted on Modrinth/Curseforge.
 
+## Translations
+Translations are community-provided on [Codeberg Translate](https://translate.codeberg.org/projects/no-hat-for-da-ground/) (a Weblate instance). I don't know any languages other than English, so if you'd like to translate, head there. If there's a bad translation, please report it on the repository (see below) or submit a fix.
+
 ## Questions and Contact
-Ports: Make an issue on [GitHub](https://github.com/skycatminepokie/no-hat-for-da-ground/issues) to request a version port. I won't port loaders.
+Make an issue on the [repository](https://codeberg.org/skycatminepokie/no-hat-for-da-ground/) to request a version port, ask a question, or request a feature. I probably won't port loaders.
 
 Questions? Either make an issue or ping `@skycatminepokie` on the Fabric Development Discord server. Enjoy!
